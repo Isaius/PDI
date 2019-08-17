@@ -10,12 +10,14 @@ dimensoes = img.shape
 # guardando as dimensoes para serem usadas para percorrer a matriz
 largura = dimensoes[1]
 altura = dimensoes[0]
+
 # frequencia ira ser um contador dos niveis de cinza
 # onde cada indice representa um dos 256 valores, de 0 à 255
 frequencia = []
 # preenchendo os contadores de 0
 for i in range(255+1):
     frequencia.append(0)
+
 # percorrendo a matriz imagem
 for i in range(altura):
     for k in range(largura):

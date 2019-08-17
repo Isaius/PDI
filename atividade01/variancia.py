@@ -1,4 +1,4 @@
-# este programa calcula a media de uma imagem digital
+# este programa calcula a variancia de uma imagem digital
 # feito por Isaius
 
 import numpy as np
@@ -18,8 +18,19 @@ somatorio = 0
 for i in range(altura):
     for k in range(largura):
         somatorio += img[i, k]
-
-print("Somatorio niveis decinza: " + str(somatorio))
+# media da imagem
 media = somatorio/img.size
-print("Media da imagem: " + str(media))
-print("Media calculada por biblioteca: " + str(np.mean(img)))
+
+somatorio = 0
+variancia = 0
+
+for i in range(altura):
+    for k in range(largura):
+        aux = img[i, k] - media
+        somatorio += aux*aux
+
+variancia = somatorio/(img.size-1)
+
+print(variancia)
+
+print(np.var(img))

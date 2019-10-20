@@ -42,11 +42,25 @@ img_result3 = hitOrMiss(im_th, KERNEL_size_x, KERNEL_size_y)
 
 img_comb = img_result1 | img_result2 | img_result3
 
-cv2.imshow("1 - Thresholded", im_th)
-cv2.imshow("2 -Result", img_result1)
-cv2.imshow("3 -Result", img_result2)
-cv2.imshow("4 -Result", img_result3)
-cv2.imshow("5 - Combination", img_comb)
+# dilatando os 3 pontos
+img_dilated = cv2.dilate(img_comb, None, iterations=18)
+
+# realizando a interseção com a imagem original e colocando tudo que não
+# seja branco (pontos dilatados) para branco
+for i in range(size[0]):
+    for j in range(size[1]):
+        if(img_dilated[i, j] == 0):
+            img_color[i, j, 0] = 255
+            img_color[i, j, 1] = 255
+            img_color[i, j, 2] = 255
+
+cv2.imshow("1 Thresholded", im_th)
+cv2.imshow("2 Result", img_result1)
+cv2.imshow("3 Result", img_result2)
+cv2.imshow("4 Result", img_result3)
+cv2.imshow("5 Combination", img_comb)
+cv2.imshow("6 Dilatada ", img_dilated)
+cv2.imshow("7 Colorida Final", img_color)
 
 cv2.waitKey(0)
 
@@ -55,3 +69,5 @@ cv2.imwrite("resultados/problema-4/2 - large_square.png", img_result1)
 cv2.imwrite("resultados/problema-4/3 - medium_square.png", img_result2)
 cv2.imwrite("resultados/problema-4/4 - tiny_square.png", img_result3)
 cv2.imwrite("resultados/problema-4/5 - combination.png", img_comb)
+cv2.imwrite("resultados/problema-4/6 - dilatated.png", img_dilated)
+cv2.imwrite("resultados/problema-4/7 - color-final.png", img_color)

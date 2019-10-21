@@ -19,12 +19,15 @@ for i in range(IMG_SIZE):
             img[i][j] = (255, 255, 255)
 
 show("Elimina elementos desnecessários", img)
+cv2.imwrite("resultados/problema-5/1-Eliminar-elem-desnecessarios.png", img)
 
 cinza = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 show("Escala de cinza", cinza)
+cv2.imwrite("resultados/problema-5/2-Graus-de-cinza.png", cinza)
 
 ret, lim = cv2.threshold(cinza, 100, 255, cv2.THRESH_BINARY_INV)
 show("Limiarização inversa", lim)
+cv2.imwrite("resultados/problema-5/3-Limiarizado.png", lim)
 
 tam = np.size(lim)
 esq = np.zeros(lim.shape, np.uint8)
@@ -44,4 +47,4 @@ while not done:
 
 show("Esqueleto", esq)
 
-cv2.imwrite("output\problema-5.png", esq)
+cv2.imwrite("resultados/problema-5/4-Resultado.png", esq)

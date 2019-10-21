@@ -19,12 +19,15 @@ for i in range(IMG_SIZE):
             img[i][j] = (255, 255, 255)
 
 show("Elimina elementos desnecessários", img)
+cv2.imwrite("resultados/problema-3/1-Eliminar-elem-desnecessarios.png", img)
 
 cinza = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 show("Escala de cinza", cinza)
+cv2.imwrite("resultados/problema-3/2-Graus-de-cinza.png", cinza)
 
 ret, lim = cv2.threshold(cinza, 200, 255, cv2.THRESH_BINARY)
 show("Limiarizado", lim)
+cv2.imwrite("resultados/problema-3/3-Limiarizado.png", lim)
 
 cont, hierarchy = cv2.findContours(lim, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -41,4 +44,4 @@ for i in range(len(cont)):
 
 show("Fechos convexos", res)
 
-cv2.imwrite("output\problema-3.png", res)
+cv2.imwrite("resultados/problema-3/4-Final.png", res)
